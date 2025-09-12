@@ -11,7 +11,7 @@ app = typer.Typer()
 
 
 SUPPORTED_LIBRARIES = Libraries()
-SUPPORTED_LIBRARIES.add(Library(name="django", classifier_pattern=r"Framework :: Django :: "))
+SUPPORTED_LIBRARIES.add(Library(name="django", classifier_pattern="Framework :: Django :: "))
 
 
 @app.command()
@@ -80,7 +80,7 @@ def add_classifiers_for_dependency(classifiers: set, dependency: str) -> None:
     for library in SUPPORTED_LIBRARIES:
         for version in library.versions:
             if requirement.specifier.contains(version):
-                potential_classifier = f"{library.classifier_pattern} {version}"
+                potential_classifier = f"{library.classifier_pattern}{version}"
 
                 if potential_classifier not in classifiers:
                     classifiers.add(potential_classifier)
