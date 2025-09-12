@@ -1,0 +1,1 @@
+uv run troml [PATH-TO-PYPROJECT-TOML]
