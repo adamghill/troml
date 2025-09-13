@@ -60,3 +60,4 @@ Yes, I agree, the name is a little weird.
 - https://indieweb.social/@adamghill/115174743670090084
 - another approach from @kfdm: https://codeberg.org/kfdm/add-classifiers
 - post about `add-classifers`: https://paultraylor.net/blog/2025/add-classifiers/
+- https://github.com/jvllmr/trove-setup

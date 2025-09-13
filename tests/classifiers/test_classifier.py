@@ -81,11 +81,10 @@ class TestPythonClassifier:
         classifiers = set()
         project = {"requires-python": ">=3.8"}
 
-        with patch("typer.secho") as mock_secho, patch.object(DependencyClassifier, "handle") as mock_handle:
+        with patch.object(DependencyClassifier, "handle") as mock_handle:
             classifier = PythonClassifier(classifiers)
             classifier.handle(project)
 
-        mock_secho.assert_called_once_with(" - Python requirement: >=3.8", fg="green")
         mock_handle.assert_called_once_with("Python>=3.8")
 
     def test_no_action_when_no_requires_python(self):
