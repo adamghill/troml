@@ -1,6 +1,8 @@
 # troml
 
-`troml` provides a list of potential classifiers that could be added to a Python package. It only supports modern Python packages that use the [`pyproject.toml`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) standard.
+`troml` provides a list of potential classifiers that could be added to a Python package.
+
+It supports modern Python packages that use the [`pyproject.toml`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) standard (aka [PEP 621](https://peps.python.org/pep-0621/) and [PEP 639](https://peps.python.org/pep-0639/)). `troml` follows [PEP 561](https://peps.python.org/pep-0561/) to determine typing information.
 
 ![Screenshot of troml in action](https://github.com/adamghill/troml/blob/main/troml.png?raw=true)
 
@@ -61,3 +63,4 @@ Yes, I agree, the name is a little weird.
 - another approach from @kfdm: https://codeberg.org/kfdm/add-classifiers
 - post about `add-classifers`: https://paultraylor.net/blog/2025/add-classifiers/
 - https://github.com/jvllmr/trove-setup
+- https://pypi.org/project/typer/
