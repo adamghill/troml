@@ -1,7 +1,7 @@
 [project]
 name = "troml"
-version = "0.2.0"
-description = "Suggest new trove classifiers for modern Python packages."
+version = "0.3.0"
+description = "Suggests classifiers for Python packages."
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"

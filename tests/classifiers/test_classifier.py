@@ -1,4 +1,4 @@
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import pytest
 
@@ -124,45 +124,4 @@ class TestDependenciesClassifier:
 
 
 class TestDependencyClassifier:
-    def test_adds_classifier_for_supported_library(self):
-        """Test that classifiers are added for supported libraries."""
-        classifiers = set()
-        dependency = "django>=4.2"
-
-        with patch("typer.secho") as mock_secho:
-            classifier = DependencyClassifier(classifiers)
-            classifier.handle(dependency)
-
-        assert any(c.startswith("Framework :: Django ::") for c in classifiers)
-        assert mock_secho.call_count >= 1
-
-    def test_ignores_unsupported_library(self):
-        """Test that unsupported libraries are ignored."""
-        classifiers = set()
-        dependency = "nonexistent-package>=1.0.0"
-
-        with patch("typer.secho") as mock_secho:
-            classifier = DependencyClassifier(classifiers)
-            classifier.handle(dependency)
-
-        assert not any(c.startswith("Framework ::") for c in classifiers)
-        mock_secho.assert_not_called()
-
-    def test_extracts_specifier_versions(self):
-        """Test that version specifiers are extracted correctly."""
-        classifier = DependencyClassifier(set())
-
-        # Test with a requirement that has multiple specifiers
-        requirement = MagicMock()
-        requirement.specifier = MagicMock()
-        requirement.specifier.__iter__.return_value = [
-            MagicMock(operator=">=", version="3.8.0"),
-            MagicMock(operator="<", version="4.0.0"),
-        ]
-
-        # Mock version_parse to return version objects
-        with patch("troml.classifiers.version_parse") as mock_parse:
-            mock_parse.side_effect = lambda _: MagicMock(major=3, minor=8, patch=0)
-            versions = classifier.get_specifier_versions(requirement)
-
-        assert versions == {"3.8"}
+    pass

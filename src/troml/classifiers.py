@@ -1,11 +1,11 @@
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
 import typer
 from packaging.requirements import Requirement
 from packaging.version import parse as version_parse
-
-from troml.config import SUPPORTED_LIBRARIES
+from trove_classifiers import all_classifiers
 
 
 @dataclass
@@ -93,35 +93,37 @@ class DependencyClassifier(Classifier):
 
     def handle(self, dependency: str) -> None:
         requirement = Requirement(dependency)
+        specifier_versions = self.get_specifier_versions(requirement=requirement)
 
-        if library := SUPPORTED_LIBRARIES.get(requirement.name):
-            specifier_versions = self.get_specifier_versions(requirement=requirement)
-            new_classifiers: set = set()
+        requirement_name = requirement.name.replace("-", " ").replace("_", " ")
 
-            for version in library.versions:
-                potential_classifier = ""
+        dependency_pattern = rf"^(Framework|Programming Language) :: {requirement_name}( :: (?P<version>\d+(\.\d+)?))?$"
+        new_classifiers: set = set()
 
-                if not version:
-                    potential_classifier = library.classifier_base
-                elif requirement.specifier.contains(version) or version in specifier_versions:
-                    potential_classifier = f"{library.classifier_base} :: {version}"
-                else:
+        for classifier in all_classifiers:
+            if match := re.match(dependency_pattern, classifier, re.IGNORECASE):
+                potential_classifier = match.string
+                version = match.groupdict().get("version")
+
+                if version and not requirement.specifier.contains(version) and version not in specifier_versions:
                     continue
 
                 if potential_classifier and potential_classifier not in (self.classifiers | new_classifiers):
                     new_classifiers.add(potential_classifier)
 
-            self.classifiers.update(new_classifiers)
+        self.classifiers.update(new_classifiers)
 
-            if len(new_classifiers) > 1:
-                typer.secho(f" - Add {len(new_classifiers)} classifiers for {requirement}", fg=typer.colors.GREEN)
-            elif len(new_classifiers) == 1:
-                typer.secho(f" - Add classifier for {requirement}", fg=typer.colors.GREEN)
+        if len(new_classifiers) > 1:
+            typer.secho(f" - Add {len(new_classifiers)} classifiers for {requirement}", fg=typer.colors.GREEN)
+        elif len(new_classifiers) == 1:
+            typer.secho(f" - Add classifier for {requirement}", fg=typer.colors.GREEN)
 
     def get_specifier_versions(self, requirement: Requirement) -> set[str]:
         """Get the major.minor versions in requirement specifier for potential inclusion in classifiers.
 
-        This ensures `Python>=3.9.7` requirement includes "Programming Language :: Python :: 3.9" in classifiers.
+        This ensures things similar to:
+        - `Python>=3.9.7` requirement includes "Programming Language :: Python :: 3.9"
+        - `Django>=5.1.1` requirement includes "Framework :: Django :: 5.1"
         """
 
         specifier_versions = set()

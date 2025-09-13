@@ -1,3 +1,7 @@
+# 0.3.0
+
+- Much more generic handling of dependency classifiers, so Flask, Django CMS, FastAPI, etc. now work as expected.
+
 # 0.2.0
 
 - Improve output.
