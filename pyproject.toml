@@ -1,6 +1,6 @@
 [project]
 name = "troml"
-version = "0.1.0"
+version = "0.1.1"
 description = "Suggest new trove classifiers for modern Python packages."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -11,6 +11,7 @@ keywords = [
 ]
 
 dependencies = [
+    "packaging>=25.0",
     "trove-classifiers>=2025.9.11.17",
     "typer>=0.17.4",
 ]

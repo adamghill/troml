@@ -309,9 +309,10 @@ wheels = [
 
 [[package]]
 name = "troml"
-version = "0.1.0"
+version = "0.1.1"
 source = { editable = "." }
 dependencies = [
+    { name = "packaging" },
     { name = "trove-classifiers" },
     { name = "typer" },
 ]
@@ -325,6 +326,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "packaging", specifier = ">=25.0" },
     { name = "trove-classifiers", specifier = ">=2025.9.11.17" },
     { name = "typer", specifier = ">=0.17.4" },
 ]
