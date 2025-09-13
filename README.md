@@ -1,12 +1,12 @@
 # troml
 
-`troml` investigates a modern Python package, i.e. a package with a `pyproject.toml` file, and provides a list of potential classifiers that could be added.
+`troml` provides a list of potential classifiers that could be added to a Python package. It only supports modern Python packages that use the [`pyproject.toml`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) standard.
 
 ![Screenshot of troml in action](https://github.com/adamghill/troml/blob/main/troml.png?raw=true)
 
 ## Usage
 
-1. Go to a directory with source code for a modern Python package
+1. Go to a directory with source code for a Python package
 2. `uvx troml`
 
 ### Specify a path
@@ -35,10 +35,10 @@
 
 ## What's with the name?
 
-- The classifiers for Python are called "trove classifiers"
-- Modern Python packages use TOML
+- The classifiers for Python are called ["Trove classifiers"](https://pypi.org/classifiers/)
+- Modern Python packages use TOML for configuration
 
-Hence: "trove" + "TOML".
+"trove" 🤝 "TOML"
 
 Yes, I agree, the name is a little weird.
 
@@ -48,11 +48,15 @@ Yes, I agree, the name is a little weird.
 
 `uv run troml [PATH-TO-PYPROJECT-TOML]`
 
-### Tests
+### Commands
 
-`just test`
+- unit tests (via `pytest`): `just test`
+- linting (via `ruff`): `just lint`
+- type checking (via `mypy`): `just type`
+- unit test coverage (via `coverage.py`): `just coverage`
 
 ## Inspiration
 
 - https://indieweb.social/@adamghill/115174743670090084
 - another approach from @kfdm: https://codeberg.org/kfdm/add-classifiers
+- post about `add-classifers`: https://paultraylor.net/blog/2025/add-classifiers/
