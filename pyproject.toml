@@ -35,6 +35,10 @@ dev = [
 [project.scripts]
 troml = "troml:app"
 
+[project.urls]
+homepage = "https://github.com/adamghill/troml/"
+repository = "https://github.com/adamghill/troml.git"
+
 [tool.ruff]
 src = ["src"]
 exclude = []
