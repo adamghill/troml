@@ -8,8 +8,46 @@ It supports modern Python packages that use the [`pyproject.toml`](https://packa
 
 ## Usage
 
+### `uv`
+
+1. Install [`uv`](https://docs.astral.sh/uv/getting-started/installation/)
+2. Go to a directory with source code for a Python package
+3. `uvx troml`
+
+### `pipx`
+
+1. Install [`pipx`](https://pipx.pypa.io/latest/installation/)
+2. `pipx install troml`
+3. Go to a directory with source code for a Python package
+4. `troml`
+
+### `pip`
+
 1. Go to a directory with source code for a Python package
-2. `uvx troml`
+2. `python3 -m venv .venv`
+3. `pip install troml`
+4. `troml`
+
+### `pip --user`
+
+1. `pip install --user troml`
+2. Go to a directory with source code for a Python package
+3. `troml`
+
+### `uv`
+
+1. `uv add troml`
+2. Go to a directory with source code for a Python package
+3. `uv run troml`
+
+
+### `uv tool`
+
+1. `uv tool install troml`
+2. Go to a directory with source code for a Python package
+3. `uv tool run troml`
+
+## CLI arguments
 
 ### Specify a path
 
