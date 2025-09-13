@@ -2,7 +2,7 @@
 
 `troml` investigates a modern Python package, i.e. a package with a `pyproject.toml` file, and provides a list of potential classifiers that could be added.
 
-![Screenshot of troml in action](troml.png)
+![Screenshot of troml in action](https://github.com/adamghill/troml/blob/main/troml.png?raw=true)
 
 ## Usage
 
