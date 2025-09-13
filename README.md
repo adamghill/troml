@@ -8,7 +8,9 @@ It supports modern Python packages that use the [`pyproject.toml`](https://packa
 
 ## Usage
 
-### `uv`
+### `uvx`
+
+`uv` is an extremely fast Python package and project manager, written in Rust. Self-contained library using `uv`. `uvx` is an alias for [`uv tool run ...`](https://docs.astral.sh/uv/concepts/tools/).
 
 1. Install [`uv`](https://docs.astral.sh/uv/getting-started/installation/)
 2. Go to a directory with source code for a Python package
@@ -16,12 +18,16 @@ It supports modern Python packages that use the [`pyproject.toml`](https://packa
 
 ### `pipx`
 
+`pipx` is a way to run install and run Python applications in isolated environments.
+
 1. Install [`pipx`](https://pipx.pypa.io/latest/installation/)
 2. `pipx install troml`
 3. Go to a directory with source code for a Python package
 4. `troml`
 
 ### `pip --user`
+
+Install `troml` to the Python user install directory. More details [in the docs](https://pip.pypa.io/en/stable/cli/pip_install/#cmdoption-user).
 
 1. `pip install --user troml`
 2. Go to a directory with source code for a Python package
