@@ -49,8 +49,6 @@ class PythonClassifier(Classifier):
 
     def handle(self, project: dict) -> None:
         if requires_python := project.get("requires-python"):
-            typer.secho(f" - Python requirement: {requires_python}", fg=typer.colors.GREEN)
-
             dependency = f"Python{requires_python}"
             DependencyClassifier(self.classifiers).handle(dependency)
 
@@ -116,14 +114,14 @@ class DependencyClassifier(Classifier):
             self.classifiers.update(new_classifiers)
 
             if len(new_classifiers) > 1:
-                typer.secho(f" - Add {len(new_classifiers)} classifiers for {requirement.name}", fg=typer.colors.GREEN)
+                typer.secho(f" - Add {len(new_classifiers)} classifiers for {requirement}", fg=typer.colors.GREEN)
             elif len(new_classifiers) == 1:
-                typer.secho(f" - Add classifier for {requirement.name}", fg=typer.colors.GREEN)
+                typer.secho(f" - Add classifier for {requirement}", fg=typer.colors.GREEN)
 
     def get_specifier_versions(self, requirement: Requirement) -> set[str]:
         """Get the major.minor versions in requirement specifier for potential inclusion in classifiers.
 
-        This ensures `Python>=3.9.7` requirement includes "Programming Language :: Python :: 3.9" in classifiers
+        This ensures `Python>=3.9.7` requirement includes "Programming Language :: Python :: 3.9" in classifiers.
         """
 
         specifier_versions = set()
