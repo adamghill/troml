@@ -5,7 +5,7 @@ from pathlib import Path
 import typer
 from packaging.requirements import Requirement
 from packaging.version import parse as version_parse
-from trove_classifiers import all_classifiers
+from trove_classifiers import classifiers as trove_classifiers
 
 
 @dataclass
@@ -102,7 +102,7 @@ class DependencyClassifier(Classifier):
         dependency_pattern = rf"^(Framework|Programming Language) :: {requirement_name}( :: (?P<version>\d+(\.\d+)?))?$"
         new_classifiers: set = set()
 
-        for classifier in all_classifiers:
+        for classifier in trove_classifiers:
             if match := re.match(dependency_pattern, classifier, re.IGNORECASE):
                 potential_classifier = match.string
                 version = match.groupdict().get("version")
