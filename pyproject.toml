@@ -21,6 +21,7 @@ classifiers = [
 
 dependencies = [
     "packaging>=25.0",
+    "tomlkit>=0.13.3",
     "trove-classifiers>=2025.9.11.17",
     "typer>=0.17.4",
 ]

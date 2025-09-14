@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import pytest
+from tomlkit.exceptions import ParseError
 
 from troml.loader import get_pyproject_data
 
@@ -44,7 +45,7 @@ def test_invalid_toml(tmp_path):
     pyproject_path = tmp_path / "pyproject.toml"
     pyproject_path.write_text("invalid toml content")
 
-    with pytest.raises(ValueError) as e:
+    with pytest.raises(ParseError) as e:
         get_pyproject_data(tmp_path)
 
-    assert "tomllib.TOMLDecodeError" in e.exconly()
+    assert 'Invalid key "invalid toml content"' in e.exconly()

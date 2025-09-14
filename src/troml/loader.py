@@ -1,8 +1,8 @@
 from pathlib import Path
-from tomllib import load as toml_load
 from typing import Any
 
 import typer
+from tomlkit import load as toml_load
 
 
 def get_cwd_and_pyproject_data(path: Path | None = None) -> tuple[Path, dict]:
