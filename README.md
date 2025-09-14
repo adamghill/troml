@@ -10,7 +10,7 @@ It supports modern Python packages that use the [`pyproject.toml`](https://packa
 
 ### `uvx`
 
-`uv` is an extremely fast Python package and project manager, written in Rust. Self-contained library using `uv`. `uvx` is an alias for [`uv tool run ...`](https://docs.astral.sh/uv/concepts/tools/).
+`uv` is an extremely fast Python package and project manager, written in Rust. `uvx` is an alias for [`uv tool run ...`](https://docs.astral.sh/uv/concepts/tools/).
 
 1. Install [`uv`](https://docs.astral.sh/uv/getting-started/installation/)
 2. Go to a directory with source code for a Python package
@@ -27,7 +27,7 @@ It supports modern Python packages that use the [`pyproject.toml`](https://packa
 
 ### `pip --user`
 
-Install `troml` to the Python user install directory. More details [in the docs](https://pip.pypa.io/en/stable/cli/pip_install/#cmdoption-user).
+Install `troml` to the Python user install directory. More details [in the pip docs](https://pip.pypa.io/en/stable/cli/pip_install/#cmdoption-user).
 
 1. `pip install --user troml`
 2. Go to a directory with source code for a Python package
@@ -47,13 +47,13 @@ Provides an output of suggested classifiers. The default if no other command is 
 
 `uvx troml suggest /path/to/pypyproject.toml`
 
-#### fix
+#### --fix
 
 Automatically add classifiers in the `pyproject.toml` based on the suggestions. Will not remove existing classifiers.
 
 `uvx troml suggest --fix /path/to/pypyproject.toml`
 
-#### no-multiline
+#### --no-multiline
 
 Output the classifiers in a single-line. No-op if used without `--fix`.
 
@@ -71,7 +71,7 @@ Exits with an error code if there are any suggested classifiers. Useful for `pre
 
 `troml` will read `project.python-requires` and suggest classifiers based on it.
 
-### Legacy license
+### License (deprecated)
 
 `troml` will suggest removing the legacy license classifiers.
 
