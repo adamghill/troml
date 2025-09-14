@@ -23,9 +23,11 @@ class TypingTypedClassifier(Classifier):
     """Typing :: Typed classifier."""
 
     def handle(self, cwd: Path) -> None:
-        if (cwd / "py.typed").exists():
+        typed_classifier = "Typing :: Typed"
+
+        if (cwd / "py.typed").exists() and typed_classifier not in self.classifiers:
             typer.secho(" - Add typed classifier based on py.typed file", fg=typer.colors.GREEN)
-            self.classifiers.add("Typing :: Typed")
+            self.classifiers.add(typed_classifier)
 
 
 @dataclass
