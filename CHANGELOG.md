@@ -1,3 +1,9 @@
+# 0.4.0
+
+- Add `check` command.
+- Add `--fix` option to `suggest` command.
+- Add `--multiline` extra option for `--fix`.
+
 # 0.3.0
 
 - Much more generic handling of dependency classifiers, so Flask, Django CMS, FastAPI, etc. now work as expected.

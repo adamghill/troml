@@ -15,7 +15,7 @@ def test_file_path(tmp_path):
 license = "MIT"
 """)
 
-    actual = get_pyproject_data(pyproject_path)
+    actual = get_pyproject_data(tmp_path)
 
     assert expected == actual["project"]["license"]
 

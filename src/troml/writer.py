@@ -1,14 +1,23 @@
 from pathlib import Path
 
 from tomlkit import dumps, parse
+from tomlkit.items import Array, Trivia
 
 
-def write(path: Path, classifiers: list[str]) -> None:
-    doc = parse(path.read_bytes())
-    toml_classifiers = doc.get("project", {}).get("classifiers", [])
+def write(pyproject_path: Path, classifiers: list[str], multiline: bool = True) -> None:  # noqa: FBT001, FBT002
+    doc = parse(pyproject_path.read_text())
 
-    for classifier in classifiers:
-        if classifier not in toml_classifiers:
-            toml_classifiers.append(classifier)
+    if "project" not in doc:
+        raise AssertionError("Missing `project` table")
 
-    path.write_text(dumps(doc))
+    array = Array([], trivia=Trivia(), multiline=multiline)
+
+    for classifier in sorted(classifiers):
+        if multiline:
+            array.add_line(classifier)
+        else:
+            array.append(classifier)
+
+    doc["project"]["classifiers"] = array  # type: ignore[index]
+
+    pyproject_path.write_text(dumps(doc))

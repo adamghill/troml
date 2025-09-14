@@ -35,11 +35,35 @@ Install `troml` to the Python user install directory. More details [in the docs]
 
 ## CLI arguments
 
-### Specify a path
+### path
 
-`troml` also accepts a path as the first argument.
+`troml` optionally accepts a path as the first argument. Defaults to `.` for the current directory.
 
 `uvx troml /path/to/pypyproject.toml`
+
+### suggest
+
+Provides an output of suggested classifiers. The default if no other command is used.
+
+`uvx troml suggest /path/to/pypyproject.toml`
+
+#### fix
+
+Automatically add classifiers in the `pyproject.toml` based on the suggestions. Will not remove existing classifiers.
+
+`uvx troml suggest --fix /path/to/pypyproject.toml`
+
+#### no-multiline
+
+Output the classifiers in a single-line. No-op if used without `--fix`.
+
+`uvx troml suggest --fix --multiline /path/to/pypyproject.toml`
+
+### check
+
+Exits with an error code if there are any suggested classifiers. Useful for `pre-commit`, CI/CD, etc.
+
+`uvx troml check /path/to/pypyproject.toml`
 
 ## Supported classifiers
 
