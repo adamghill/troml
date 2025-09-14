@@ -1,8 +1,8 @@
-# troml
+# troml 🥁
 
 `troml` provides a list of potential classifiers that could be added to a Python package.
 
-It supports modern Python packages that use the [`pyproject.toml`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) standard (aka [PEP 621](https://peps.python.org/pep-0621/) and [PEP 639](https://peps.python.org/pep-0639/)). `troml` follows [PEP 561](https://peps.python.org/pep-0561/) to determine typing information.
+It supports modern Python packages that use the [`pyproject.toml`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) standard (aka [PEP 621](https://peps.python.org/pep-0621/) and [PEP 639](https://peps.python.org/pep-0639/)). `troml` also follows [PEP 561](https://peps.python.org/pep-0561/) to determine whether a package should be considered typed or not.
 
 ![Screenshot of troml in action](https://github.com/adamghill/troml/blob/main/troml.png?raw=true)
 
@@ -59,6 +59,12 @@ Install `troml` to the Python user install directory. More details [in the docs]
 
 `troml` will suggest the "Typing :: Typed" classifier based on the existence of the `py.typed` file in the same directory as the `pyproject.toml` file.
 
+## FAQ
+
+### Does this add classifiers interactively?
+
+Nope and it's not something I would add in. Take a look at https://codeberg.org/kfdm/add-classifiers or https://github.com/jvllmr/trove-setup if that's what you are looking for.
+
 ## What's with the name?
 
 - The classifiers for Python are called ["Trove classifiers"](https://pypi.org/classifiers/)
@@ -66,9 +72,12 @@ Install `troml` to the Python user install directory. More details [in the docs]
 
 "trove" 🤝 "TOML"
 
-Yes, I agree, the name is a little weird.
+In a happy coincidence, "trommel" in Dutch means "drum".
 
 ## Development
+
+1. Install `just`: https://just.systems/man/en/packages.html
+2. `just fetch`
 
 ### Run from source
 
@@ -80,6 +89,7 @@ Yes, I agree, the name is a little weird.
 - linting (via `ruff`): `just lint`
 - type checking (via `mypy`): `just type`
 - unit test coverage (via `coverage.py`): `just coverage`
+- run 'em all: `just dev`
 
 ## Inspiration
 
@@ -87,4 +97,4 @@ Yes, I agree, the name is a little weird.
 - another approach from @kfdm: https://codeberg.org/kfdm/add-classifiers
 - post about `add-classifers`: https://paultraylor.net/blog/2025/add-classifiers/
 - https://github.com/jvllmr/trove-setup
-- https://pypi.org/project/typer/
+- https://pypi.org/project/typer/ for creating the CLI
