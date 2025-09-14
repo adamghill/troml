@@ -1,3 +1,7 @@
+# 0.4.1
+
+- Fix to only show typed output when that classified is added.
+
 # 0.4.0
 
 - Add `check` command.
