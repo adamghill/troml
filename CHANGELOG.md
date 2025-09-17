@@ -24,4 +24,4 @@
 
 - Python classifiers based on `project.python-requires`
 - Framework classifiers based on dependencies defined in `project.dependencies`, `project.dependency-groups`, `tool.uv.constraint-dependencies` (only supports Django for now)
-- Typed classifer for an existing `py.typed` file
+- Typed classifier for an existing `py.typed` file
