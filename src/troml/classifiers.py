@@ -1,4 +1,5 @@
 import re
+from copy import copy
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -6,6 +7,28 @@ import typer
 from packaging.requirements import Requirement
 from packaging.version import parse as version_parse
 from trove_classifiers import classifiers as trove_classifiers
+
+from troml.loader import get_pyproject_data
+
+
+def get_suggested_classifiers(path: Path) -> tuple[list[str], list[str]]:
+    """Get suggested classifiers for a library."""
+
+    data = get_pyproject_data(path)
+
+    project = data.get("project", {})
+    classifiers = project.get("classifiers", [])
+
+    suggested_classifiers = set(copy(classifiers))
+
+    TypingTypedClassifier(suggested_classifiers).handle(path=path)
+    LicenseClassifier(suggested_classifiers).handle(project=project)
+    PythonClassifier(suggested_classifiers).handle(project=project)
+    DependenciesClassifier(suggested_classifiers).handle(data=data)
+
+    sorted_suggested_classifiers = sorted(suggested_classifiers)
+
+    return (classifiers, sorted_suggested_classifiers)
 
 
 @dataclass
@@ -22,10 +45,10 @@ class Classifier:
 class TypingTypedClassifier(Classifier):
     """Typing :: Typed classifier."""
 
-    def handle(self, cwd: Path) -> None:
+    def handle(self, path: Path) -> None:
         typed_classifier = "Typing :: Typed"
 
-        if (cwd / "py.typed").exists() and typed_classifier not in self.classifiers:
+        if (path / "py.typed").exists() and typed_classifier not in self.classifiers:
             typer.secho(" - Add typed classifier based on py.typed file", fg=typer.colors.GREEN)
             self.classifiers.add(typed_classifier)
 

@@ -5,21 +5,22 @@ import typer
 from tomlkit import parse
 
 
-def get_cwd(path: Path | None = None) -> Path:
+def get_path(path: Path | None = None) -> Path:
     path = path or Path(".").resolve()
 
     if not path.exists():
         raise FileNotFoundError("No such directory")
 
     if not path.is_dir():
-        raise AssertionError("Path is not a directory")
+        path = path.parent
 
     return path
 
 
-def get_pyproject_data(cwd: Path) -> dict[str, Any]:
-    pyproject_path = cwd / "pyproject.toml"
+def get_pyproject_data(path: Path, is_verbose: bool = True) -> dict[str, Any]:
+    pyproject_path = path / "pyproject.toml"
 
-    typer.secho(f"Loading data from '{pyproject_path.parent}'", fg=typer.colors.BLUE)
+    if is_verbose:
+        typer.secho(f"Loading data from '{pyproject_path.parent}'", fg=typer.colors.BLUE)
 
     return dict(parse(pyproject_path.read_bytes()))
